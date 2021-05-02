@@ -1,18 +1,21 @@
 #include <stdio.h>
-#include <math.h>
 
 #include "nvector.h"
 
 typedef struct foo foo;
-struct foo { int a, b; };
+struct foo
+{
+  int a, b;
+};
 
 /* Define generic functions for the following types. */
-nv_value (int)
-nv_value (double)
-nv_value (foo)
-nv_ptr (foo, *)
+nv_value (int);
+nv_value (double);
+nv_value (foo);
+nv_ptr (foo, *);
 
-int test_square (nvector* vec)
+int
+test_square (nvector* vec)
 {
   int i;
 
@@ -40,7 +43,7 @@ int test_square (nvector* vec)
     printf ("vec[%d] = %d\n", i, nv_get_int (vec, i));
 
   /* Double is bigger than integer, so pushing should result in an error. */
-  if (nv_pushb_double (vec, sqrt (i)) == NV_ERR_OK)
+  if (nv_pushb_double (vec, 420.69) == NV_ERR_OK)
     {
       puts ("\nnv_pushb_double succeeded (very bad)");
       return 1;
@@ -53,7 +56,8 @@ int test_square (nvector* vec)
   return 0;
 }
 
-int test_double (nvector* vec)
+int
+test_double (nvector* vec)
 {
   /* Refit the vector for 5 double values. */
   if (nv_init_double (vec, 5) == NV_ERR_MEM)
@@ -85,7 +89,8 @@ int test_double (nvector* vec)
   return 0;
 }
 
-int test_foo (nvector* vec)
+int
+test_foo (nvector* vec)
 {
   foo f;
   int other_a;
@@ -114,7 +119,8 @@ int test_foo (nvector* vec)
   return 0;
 }
 
-int test_foo_ptr (nvector* vec)
+int
+test_foo_ptr (nvector* vec)
 {
   foo f;
   int other_a;
@@ -139,7 +145,8 @@ int test_foo_ptr (nvector* vec)
   return 0;
 }
 
-int test_trim (nvector* vec)
+int
+test_trim (nvector* vec)
 {
   /* The final trick: trimming. */
   if (nv_init_int (vec, 100) == NV_ERR_MEM)
@@ -170,25 +177,11 @@ int test_trim (nvector* vec)
   return 0;
 }
 
-int main ()
+int
+main ()
 {
   nvector vec;
-  int exit;
 
-  if ((exit = test_square (&vec)))
-    return exit;
-
-  if ((exit = test_double (&vec)))
-    return exit;
-
-  if ((exit = test_foo (&vec)))
-    return exit;
-
-  if ((exit = test_foo_ptr (&vec)))
-    return exit;
-
-  if ((exit = test_trim (&vec)))
-    return exit;
-
-  return 0;
+  return test_square (&vec) || test_double (&vec) || test_foo (&vec)
+         || test_foo_ptr (&vec) || test_trim (&vec);
 }

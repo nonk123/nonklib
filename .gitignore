@@ -1,5 +1,2 @@
 cmake-build-*/
 .idea/
-
-*.obj
-*_test.exe

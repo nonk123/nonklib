@@ -2,7 +2,8 @@
 
 #include "nvector.h"
 
-int nv__init (nvector* nv, size_t initial_length, size_t elt_size)
+int
+nv__init (nvector* nv, size_t initial_length, size_t elt_size)
 {
   nv->elt_size = elt_size;
   nv->capacity = initial_length * nv->elt_size;
@@ -12,7 +13,8 @@ int nv__init (nvector* nv, size_t initial_length, size_t elt_size)
   return nv->buffer == NULL ? NV_ERR_MEM : NV_ERR_OK;
 }
 
-void nv_free (nvector* nv)
+void
+nv_free (nvector* nv)
 {
   if (nv->buffer != NULL)
     {
@@ -21,7 +23,8 @@ void nv_free (nvector* nv)
     }
 }
 
-int nv_trim (nvector* nv)
+int
+nv_trim (nvector* nv)
 {
   if (nv == NULL || nv->buffer == NULL)
     return NV_ERR_MEM;
@@ -36,7 +39,8 @@ int nv_trim (nvector* nv)
   return nv->buffer == NULL ? NV_ERR_MEM : NV_ERR_OK;
 }
 
-int nv__pushb (nvector* nv, unsigned int elt_size, char* value)
+int
+nv__pushb (nvector* nv, unsigned int elt_size, char* value)
 {
   if (nv == NULL)
     return NV_ERR_MEM;
@@ -44,7 +48,8 @@ int nv__pushb (nvector* nv, unsigned int elt_size, char* value)
     return nv__insert (nv, elt_size, nv->length, value);
 }
 
-int nv__set (nvector* nv, unsigned int elt_size, size_t pos, char* value)
+int
+nv__set (nvector* nv, unsigned int elt_size, size_t pos, char* value)
 {
   unsigned int i;
 
@@ -70,7 +75,8 @@ int nv__set (nvector* nv, unsigned int elt_size, size_t pos, char* value)
 
 #define BUFFER 10
 
-int nv__insert (nvector* nv, unsigned int elt_size, size_t pos, char* value)
+int
+nv__insert (nvector* nv, unsigned int elt_size, size_t pos, char* value)
 {
   unsigned int i;
 
