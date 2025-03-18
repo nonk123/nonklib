@@ -19,9 +19,9 @@ struct nlVec {
     size_t length, capacity, element_size;
 };
 
-#define nlVecOf(T)                                                                                 \
-    (nlVec) {                                                                                      \
-        .data = NULL, .length = 0, .capacity = 0, .element_size = sizeof(T),                       \
+#define nlVecOf(T)                                                                                                     \
+    (nlVec) {                                                                                                          \
+        .data = NULL, .length = 0, .capacity = 0, .element_size = sizeof(T),                                           \
     }
 
 void nlVec_Free(nlVec* vec)
@@ -95,10 +95,10 @@ void nlVec_PushGeneric(nlVec* vec, const nlByte* elt)
 
 #define nlVec_Push(vec, elt) nlVec_PushGeneric((vec), (nlByte*)&(elt))
 
-#define nlVec_PushConst(vec, T, value)                                                             \
-    do {                                                                                           \
-        T copy = (value);                                                                          \
-        nlVec_Push((vec), copy);                                                                   \
+#define nlVec_PushConst(vec, T, value)                                                                                 \
+    do {                                                                                                               \
+        T copy = (value);                                                                                              \
+        nlVec_Push((vec), copy);                                                                                       \
     } while (0)
 
 #endif

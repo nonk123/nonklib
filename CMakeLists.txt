@@ -11,3 +11,6 @@ set(CMAKE_C_EXTENSIONS OFF)
 
 add_executable(tests tests.c)
 target_include_directories(tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+
+add_executable(benchmarks benches.c)
+target_include_directories(tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
