@@ -21,11 +21,11 @@ Now you can use the library from any of your .c files:
 #include "nl.h"
 
 int main(int argc, char* argv[]) {
-    NL_Vec my_vec = NL_VecOf(int);
+    nlVec my_vec = nlVecOf(int);
 
     int element = 69;
-    NL_Vec_Push(&my_vec, element);
-    NL_Vec_PushConst(&my_vec, int, 42);
+    nlVec_Push(&my_vec, element);
+    nlVec_PushConst(&my_vec, int, 42);
 
     printf("length = %u; should = 2\n", my_vec.length);
 

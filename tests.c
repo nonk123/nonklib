@@ -1,14 +1,14 @@
 #include "test_runner.c"
 
 Test(vec_empty) {
-    NL_Vec vec = NL_VecOf(int);
+    nlVec vec = nlVecOf(int);
 
     Assert(vec.data == NULL);
     Assert(vec.length == 0);
     Assert(vec.capacity == 0);
     Assert(vec.element_size == sizeof(int));
 
-    NL_Vec_Free(&vec);
+    nlVec_Free(&vec);
 
     Assert(vec.data == NULL);
     Assert(vec.length == 0);
@@ -17,18 +17,18 @@ Test(vec_empty) {
 }
 
 Test(vec_push) {
-    NL_Vec vec = NL_VecOf(int);
+    nlVec vec = nlVecOf(int);
 
     int value = 42;
-    NL_Vec_Push(&vec, value);
+    nlVec_Push(&vec, value);
 
     Assert(vec.data != NULL);
     Assert(vec.length == 1);
-    Assert(vec.capacity == NL_Vec_BASE_CAPACITY);
+    Assert(vec.capacity == nlVec_BASE_CAPACITY);
     Assert(vec.element_size == sizeof(int));
     Assert(((int*)vec.data)[0] == value);
 
-    NL_Vec_Free(&vec);
+    nlVec_Free(&vec);
 
     Assert(vec.data == NULL);
     Assert(vec.length == 0);
@@ -37,13 +37,13 @@ Test(vec_push) {
 }
 
 Test(vec_push_const) {
-    NL_Vec vec = NL_VecOf(int);
-    NL_Vec_PushConst(&vec, int, 42);
-    NL_Vec_PushConst(&vec, int, 69);
-    NL_Vec_PushConst(&vec, int, 777);
+    nlVec vec = nlVecOf(int);
+    nlVec_PushConst(&vec, int, 42);
+    nlVec_PushConst(&vec, int, 69);
+    nlVec_PushConst(&vec, int, 777);
 
     Assert(vec.length == 3);
-    Assert(vec.capacity == NL_Vec_BASE_CAPACITY);
+    Assert(vec.capacity == nlVec_BASE_CAPACITY);
     Assert(vec.element_size == sizeof(int));
 
     int* data = (int*)vec.data;
@@ -51,7 +51,7 @@ Test(vec_push_const) {
     Assert(data[1] == 69);
     Assert(data[2] == 777);
 
-    NL_Vec_Free(&vec);
+    nlVec_Free(&vec);
 }
 
 TestFn tests[] = {
