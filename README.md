@@ -29,6 +29,8 @@ int main(int argc, char* argv[]) {
 
     printf("length = %u; should = 2\n", my_vec.length);
 
+    nlVec_Free(&my_vec);
+
     return 0;
 }
 ```
