@@ -34,3 +34,21 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 ```
+
+## Goodies
+
+Tests and benchmarks are bundled into the repository. Build then with CMake, e.g.:
+
+```bash
+cmake -S . -B build -G Ninja
+cmake --build build
+```
+
+Run the tests and the benchmarks respectively with:
+
+```bash
+./build/tests
+./build/benchmarks
+# You can run just a specific benchmark too:
+./build/benchmarks millionaire
+```
