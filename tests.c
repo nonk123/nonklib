@@ -55,8 +55,8 @@ Test(vec_push_const) {
 }
 
 TestFn tests[] = {
-    test_vec_empty,
-    test_vec_push,
-    test_vec_push_const,
+    vec_empty,
+    vec_push,
+    vec_push_const,
     NULL,
 };

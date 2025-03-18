@@ -16,15 +16,15 @@ void run_tests() {
     }
 }
 
-int test__failure;
+int __test_failure;
 
 int __run_test(const char* name, void (*test)()) {
     tests_run++;
 
-    test__failure = 0;
+    __test_failure = 0;
     test();
 
-    if (test__failure) {
+    if (__test_failure) {
         printf("Test '%s' failed\n", name);
         tests_failed++;
     } else {
@@ -35,14 +35,14 @@ int __run_test(const char* name, void (*test)()) {
 #define Assert(expr)                                                                               \
     if (!(expr)) {                                                                                 \
         printf("Assertion failed: %s\n", #expr);                                                   \
-        test__failure = 1;                                                                         \
+        __test_failure = 1;                                                                        \
         return;                                                                                    \
     }
 
 #define Test(name)                                                                                 \
     void test_##name##__body();                                                                    \
                                                                                                    \
-    void test_##name() {                                                                           \
+    void name() {                                                                                  \
         __run_test(#name, test_##name##__body);                                                    \
     }                                                                                              \
                                                                                                    \
