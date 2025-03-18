@@ -2,7 +2,7 @@
 
 Header-only implementations of various data structures for learning purposes.
 
-## Usage
+## Basic usage
 
 First, make sure to create and include in your build a .c file with the following contents:
 
@@ -52,3 +52,8 @@ Run the tests and the benchmarks respectively with:
 # You can run just a specific benchmark too:
 ./build/benchmarks millionaire
 ```
+
+## Advanced usage
+
+1. Define `nlMalloc` and `nlFree` in the implementation source file if you use an external memory allocator. See [the custom heap example](examples/custom_heap.c).
+2. Use `#define NL_NO_DEFAULTS` to fine-tune what features you wish to include.

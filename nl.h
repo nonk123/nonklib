@@ -13,6 +13,12 @@
 
 typedef unsigned char nlByte;
 
+#ifndef NL_NO_DEFAULTS
+#define NL_VECTORS
+#endif
+
+#ifdef NL_VECTORS
+
 typedef struct nlVec nlVec;
 struct nlVec {
     nlByte* data;
@@ -100,5 +106,7 @@ void nlVec_PushGeneric(nlVec* vec, const nlByte* elt)
         T copy = (value);                                                                                              \
         nlVec_Push((vec), copy);                                                                                       \
     } while (0)
+
+#endif
 
 #endif

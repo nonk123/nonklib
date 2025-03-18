@@ -10,7 +10,14 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_C_EXTENSIONS OFF)
 
 add_executable(tests tests.c)
-target_include_directories(tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(tests PRIVATE ${CMAKE_SOURCE_DIR})
 
 add_executable(benchmarks benches.c)
-target_include_directories(tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(tests PRIVATE ${CMAKE_SOURCE_DIR})
+
+file(GLOB EXAMPLE_PROGRAMS ${CMAKE_SOURCE_DIR}/examples/*.c)
+foreach(EXAMPLE_FILE ${EXAMPLE_PROGRAMS})
+  get_filename_component(EXAMPLE_NAME ${EXAMPLE_FILE} NAME_WE)
+  add_executable(${EXAMPLE_NAME} ${EXAMPLE_FILE})
+  target_include_directories(${EXAMPLE_NAME} PRIVATE ${CMAKE_SOURCE_DIR})
+endforeach()
